@@ -9,7 +9,7 @@ def index():
     memory_usage = psutil.virtual_memory().percent  # stores the memory usage percentage
     info=None
     if cpu_usage > 80 or memory_usage > 80:
-        msg ="High CPU or memory usage detected!"
+        info ="High CPU or memory usage detected!"
 
     return render_template("index.html", cpu_metric=cpu_usage, mem_metric=memory_usage,message =info  )# renders the index.html file
 

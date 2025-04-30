@@ -16,4 +16,4 @@ ENV host="0.0.0.0"
 # listing port .!!
 EXPOSE 5000
 
-CMD ["flask", "run"]
+CMD ["python", "app.py"]
