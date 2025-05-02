@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+     - name: start instances with public IP
+       amazon.aws.ec2_instance:
+         name: cloud-monitoring
+         key_name: ansible-keypair
+         instance_type: t2.micro
+         security_group: default
+         region: ap-south-1
+         aws_access_key: "{{ acess_key }}" # defined under vault
+         aws_secret_key: "{{ secret_key }}" # defined under vault
+         network:
+           assign_public_ip: true
+         image_id: ami-0e35ddab05955cf57  # ubuntu machine
+      
