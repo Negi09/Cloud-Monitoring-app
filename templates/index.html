@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Monitoring Dashboard</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.16.1/plotly.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -18,27 +18,27 @@
             --border-radius: 8px;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
         }
-        
+
         .container {
             width: 95%;
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         header {
             display: flex;
             justify-content: space-between;
@@ -47,26 +47,26 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #ddd;
         }
-        
+
         h1 {
             color: var(--dark-color);
             font-size: 28px;
             display: flex;
             align-items: center;
         }
-        
+
         h1 i {
             margin-right: 12px;
             color: var(--primary-color);
         }
-        
+
         .overview-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-        
+
         .stat-card {
             background: white;
             border-radius: var(--border-radius);
@@ -75,7 +75,7 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .stat-card h3 {
             margin-bottom: 15px;
             color: var(--dark-color);
@@ -83,50 +83,50 @@
             display: flex;
             align-items: center;
         }
-        
+
         .stat-card h3 i {
             margin-right: 8px;
             width: 20px;
             text-align: center;
         }
-        
+
         .stat-card .value {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-        
+
         .chart-container {
             background: white;
             border-radius: var(--border-radius);
             padding: 20px;
             box-shadow: var(--box-shadow);
         }
-        
+
         .chart-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
-        
+
         .chart-header h3 {
             font-size: 16px;
             color: var(--dark-color);
         }
-        
+
         .chart-header .time-range {
             display: flex;
             gap: 10px;
         }
-        
+
         .chart-header .time-range button {
             background: var(--light-color);
             border: none;
@@ -135,7 +135,7 @@
             cursor: pointer;
             font-size: 12px;
         }
-        
+
         .chart-header .time-range button.active {
             background: var(--primary-color);
             color: white;
@@ -144,7 +144,7 @@
         .gauge-container {
             height: 300px;
         }
-        
+
         .alert {
             background-color: var(--danger-color);
             color: white;
@@ -154,12 +154,12 @@
             display: flex;
             align-items: center;
         }
-        
+
         .alert i {
             margin-right: 10px;
             font-size: 20px;
         }
-        
+
         .processes {
             background: white;
             border-radius: var(--border-radius);
@@ -167,24 +167,24 @@
             box-shadow: var(--box-shadow);
             margin-bottom: 30px;
         }
-        
+
         .processes h3 {
             margin-bottom: 15px;
             color: var(--dark-color);
             display: flex;
             align-items: center;
         }
-        
+
         .processes h3 i {
             margin-right: 8px;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
         }
-        
+
         thead th {
             background-color: #f8f9fa;
             text-align: left;
@@ -193,48 +193,48 @@
             color: var(--dark-color);
             border-bottom: 2px solid #ddd;
         }
-        
+
         tbody td {
             padding: 12px;
             border-bottom: 1px solid #eee;
         }
-        
+
         tbody tr:hover {
             background-color: #f8f9fa;
         }
-        
+
         .progress {
             height: 8px;
             background-color: #e9ecef;
             border-radius: 4px;
             overflow: hidden;
         }
-        
+
         .progress-bar {
             height: 100%;
             background-color: var(--primary-color);
         }
-        
+
         .progress-bar.warning {
             background-color: var(--warning-color);
         }
-        
+
         .progress-bar.danger {
             background-color: var(--danger-color);
         }
-        
+
         .refresh-control {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
+
         .refresh-control select {
             padding: 5px 10px;
             border-radius: 4px;
             border: 1px solid #ddd;
         }
-        
+
         .btn {
             padding: 8px 15px;
             border: none;
@@ -244,16 +244,16 @@
             align-items: center;
             gap: 5px;
         }
-        
+
         .btn-primary {
             background-color: var(--primary-color);
             color: white;
         }
-        
+
         .btn-primary:hover {
             background-color: #2980b9;
         }
-        
+
         footer {
             text-align: center;
             padding: 20px 0;
@@ -261,12 +261,12 @@
             color: #777;
             border-top: 1px solid #ddd;
         }
-        
+
         @media (max-width: 768px) {
             .grid-container {
                 grid-template-columns: 1fr;
             }
-            
+
             .overview-stats {
                 grid-template-columns: 1fr;
             }
@@ -326,7 +326,7 @@
             <div class="chart-container">
                 <div class="chart-header">
                     <h3><i class="fas fa-microchip"></i> CPU Utilization</h3>
-                    <div class="time-range">
+                    <div class="time-range" data-chart="cpu">
                         <button data-range="5m" class="active">5m</button>
                         <button data-range="15m">15m</button>
                         <button data-range="1h">1h</button>
@@ -337,7 +337,7 @@
             <div class="chart-container">
                 <div class="chart-header">
                     <h3><i class="fas fa-memory"></i> Memory Utilization</h3>
-                    <div class="time-range">
+                    <div class="time-range" data-chart="memory">
                         <button data-range="5m" class="active">5m</button>
                         <button data-range="15m">15m</button>
                         <button data-range="1h">1h</button>
@@ -418,7 +418,7 @@
                 }
             }
         };
-        
+
         const memGaugeData = {
             type: "indicator",
             mode: "gauge+number",
@@ -441,17 +441,17 @@
                 }
             }
         };
-        
+
         // Layout for gauges
         const gaugeLayout = {
             margin: { t: 25, b: 25, l: 25, r: 25 },
             height: 250
         };
-        
+
         // Initialize the gauges
         Plotly.newPlot('cpu-gauge', [cpuGaugeData], gaugeLayout);
         Plotly.newPlot('mem-gauge', [memGaugeData], gaugeLayout);
-        
+
         // Initialize history data
         let cpuHistoryData = {
             x: [],
@@ -465,7 +465,7 @@
             fill: 'tozeroy',
             fillcolor: 'rgba(52, 152, 219, 0.2)'
         };
-        
+
         let memHistoryData = {
             x: [],
             y: [],
@@ -478,7 +478,20 @@
             fill: 'tozeroy',
             fillcolor: 'rgba(46, 204, 113, 0.2)'
         };
-        
+
+        let diskHistoryData = {
+            x: [],
+            y: [],
+            type: 'scatter',
+            mode: 'lines',
+            line: {
+                color: '#9b59b6',
+                width: 2
+            },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(155, 89, 182, 0.2)'
+        };
+
         // Layout for history charts
         const historyLayout = {
             margin: { t: 10, b: 40, l: 40, r: 10 },
@@ -492,11 +505,11 @@
                 ticksuffix: '%'
             }
         };
-        
+
         // Initialize history charts
         Plotly.newPlot('cpu-history-chart', [cpuHistoryData], historyLayout);
         Plotly.newPlot('memory-history-chart', [memHistoryData], historyLayout);
-        
+
         // Network traffic data
         let networkData = [{
             x: [],
@@ -519,7 +532,7 @@
                 width: 2
             }
         }];
-        
+
         // Layout for network chart
         const networkLayout = {
             margin: { t: 10, b: 40, l: 60, r: 10 },
@@ -536,188 +549,164 @@
                 title: 'KB/s'
             }
         };
-        
+
         // Initialize network chart
         Plotly.newPlot('network-chart', networkData, networkLayout);
+
+        // Variables for refresh control
+        let refreshIntervalId;
+        let refreshInterval = 10; // Default interval in seconds
         
-        // Time variables for data collection
-        const maxDataPoints = 60;
-        let lastNetworkTime = Date.now();
-        let lastNetworkRecv = 0;
-        let lastNetworkSent = 0;
-        
-        // Function to fetch system data
-        function fetchSystemData() {
-            $.ajax({
-                url: '/system_data',
-                dataType: 'json',
-                success: function(data) {
-                    // Update CPU and Memory values
-                    $('#cpu-value').text(data.cpu_percent.toFixed(1) + '%');
-                    $('#memory-value').text(data.memory_percent.toFixed(1) + '%');
-                    $('#disk-value').text(data.disk_percent.toFixed(1) + '%');
+        // Function to update system data
+        function updateSystemData() {
+            fetch('/system_data')
+                .then(response => response.json())
+                .then(data => {
+                    // Update CPU gauge
+                    Plotly.update('cpu-gauge', {
+                        'value': [data.cpu_percent],
+                        'gauge.threshold.value': [data.cpu_percent]
+                    });
+                    
+                    // Update Memory gauge
+                    Plotly.update('mem-gauge', {
+                        'value': [data.memory_percent],
+                        'gauge.threshold.value': [data.memory_percent]
+                    });
+                    
+                    // Update overview stats
+                    document.getElementById('cpu-value').textContent = data.cpu_percent.toFixed(1) + '%';
+                    document.getElementById('memory-value').textContent = data.memory_percent.toFixed(1) + '%';
+                    document.getElementById('disk-value').textContent = data.disk_percent.toFixed(1) + '%';
                     
                     // Update progress bars
-                    updateProgressBar('.stat-card:nth-child(1) .progress-bar', data.cpu_percent);
-                    updateProgressBar('.stat-card:nth-child(2) .progress-bar', data.memory_percent);
-                    updateProgressBar('#disk-bar', data.disk_percent);
+                    const cpuBar = document.querySelector('.stat-card:nth-child(1) .progress-bar');
+                    cpuBar.style.width = data.cpu_percent + '%';
+                    cpuBar.className = 'progress-bar';
+                    if (data.cpu_percent > 80) cpuBar.classList.add('danger');
+                    else if (data.cpu_percent > 50) cpuBar.classList.add('warning');
                     
-                    // Update gauges
-                    Plotly.update('cpu-gauge', {'value': data.cpu_percent, 'gauge.threshold.value': data.cpu_percent}, {});
-                    Plotly.update('mem-gauge', {'value': data.memory_percent, 'gauge.threshold.value': data.memory_percent}, {});
+                    const memBar = document.querySelector('.stat-card:nth-child(2) .progress-bar');
+                    memBar.style.width = data.memory_percent + '%';
+                    memBar.className = 'progress-bar';
+                    if (data.memory_percent > 80) memBar.classList.add('danger');
+                    else if (data.memory_percent > 50) memBar.classList.add('warning');
                     
-                    // Update history charts
-                    const now = new Date();
-                    
-                    // Add new data points
-                    cpuHistoryData.x.push(now);
-                    cpuHistoryData.y.push(data.cpu_percent);
-                    memHistoryData.x.push(now);
-                    memHistoryData.y.push(data.memory_percent);
-                    
-                    // Remove old data points if needed
-                    if (cpuHistoryData.x.length > maxDataPoints) {
-                        cpuHistoryData.x.shift();
-                        cpuHistoryData.y.shift();
-                        memHistoryData.x.shift();
-                        memHistoryData.y.shift();
-                    }
-                    
-                    // Update the charts
-                    Plotly.update('cpu-history-chart', {x: [cpuHistoryData.x], y: [cpuHistoryData.y]}, {});
-                    Plotly.update('memory-history-chart', {x: [memHistoryData.x], y: [memHistoryData.y]}, {});
-                    
-                    // Calculate network speeds
-                    const currentTime = Date.now();
-                    const timeDiff = (currentTime - lastNetworkTime) / 1000; // seconds
-                    
-                    if (lastNetworkRecv > 0 && lastNetworkSent > 0) {
-                        const downloadSpeed = (data.network_recv - lastNetworkRecv) / timeDiff / 1024; // KB/s
-                        const uploadSpeed = (data.network_sent - lastNetworkSent) / timeDiff / 1024; // KB/s
-                        
-                        // Add to network chart
-                        networkData[0].x.push(now);
-                        networkData[0].y.push(downloadSpeed);
-                        networkData[1].x.push(now);
-                        networkData[1].y.push(uploadSpeed);
-                        
-                        // Remove old data points if needed
-                        if (networkData[0].x.length > maxDataPoints) {
-                            networkData[0].x.shift();
-                            networkData[0].y.shift();
-                            networkData[1].x.shift();
-                            networkData[1].y.shift();
-                        }
-                        
-                        // Update network chart
-                        Plotly.update('network-chart', {
-                            x: [networkData[0].x, networkData[1].x],
-                            y: [networkData[0].y, networkData[1].y]
-                        }, {});
-                    }
-                    
-                    // Store current values for next comparison
-                    lastNetworkTime = currentTime;
-                    lastNetworkRecv = data.network_recv;
-                    lastNetworkSent = data.network_sent;
+                    const diskBar = document.getElementById('disk-bar');
+                    diskBar.style.width = data.disk_percent + '%';
+                    diskBar.className = 'progress-bar';
+                    if (data.disk_percent > 80) diskBar.classList.add('danger');
+                    else if (data.disk_percent > 50) diskBar.classList.add('warning');
                     
                     // Update process list
-                    updateProcessTable(data.processes);
+                    const processList = document.getElementById('process-list');
+                    processList.innerHTML = '';
                     
-                    // Check for alerts
-                    if (data.cpu_percent > 80 || data.memory_percent > 80) {
-                        if ($('.alert').length === 0) {
-                            $('<div class="alert"><i class="fas fa-exclamation-triangle"></i><div>High CPU or memory usage detected!</div></div>')
-                                .insertAfter('header');
-                        }
-                    } else {
-                        $('.alert').remove();
-                    }
-                },
-                error: function() {
-                    console.error("Failed to fetch system data");
-                }
-            });
+                    data.processes.forEach(process => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${process.pid}</td>
+                            <td>${process.name}</td>
+                            <td>${process.cpu_percent.toFixed(1)}%</td>
+                            <td>${process.memory_percent.toFixed(1)}%</td>
+                            <td>${process.status}</td>
+                        `;
+                        processList.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching system data:', error));
         }
         
-        // Function to update progress bars
-        function updateProgressBar(selector, value) {
-            const bar = $(selector);
-            bar.css('width', value + '%');
+        // Function to update history data
+        function updateHistoryData() {
+            // Get active range for CPU chart
+            const cpuTimeRange = document.querySelector('.time-range[data-chart="cpu"] button.active').dataset.range;
             
-            // Update class based on value
-            bar.removeClass('warning danger');
-            if (value > 80) {
-                bar.addClass('danger');
-            } else if (value > 50) {
-                bar.addClass('warning');
+            fetch(`/history_data?range=${cpuTimeRange}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update CPU history chart
+                    const cpuX = data.cpu.map(point => point.x);
+                    const cpuY = data.cpu.map(point => point.y);
+                    
+                    Plotly.update('cpu-history-chart', {
+                        x: [cpuX],
+                        y: [cpuY]
+                    });
+                    
+                    // Update memory history chart
+                    const memX = data.memory.map(point => point.x);
+                    const memY = data.memory.map(point => point.y);
+                    
+                    Plotly.update('memory-history-chart', {
+                        x: [memX],
+                        y: [memY]
+                    });
+                    
+                    // Update network chart
+                    const netDownX = data.network.download.map(point => point.x);
+                    const netDownY = data.network.download.map(point => point.y);
+                    const netUpX = data.network.upload.map(point => point.x);
+                    const netUpY = data.network.upload.map(point => point.y);
+                    
+                    Plotly.update('network-chart', {
+                        x: [netDownX, netUpX],
+                        y: [netDownY, netUpY]
+                    });
+                })
+                .catch(error => console.error('Error fetching history data:', error));
+        }
+        
+        // Function to start auto refresh
+        function startAutoRefresh() {
+            // Clear any existing intervals
+            if (refreshIntervalId) {
+                clearInterval(refreshIntervalId);
             }
+            
+            // Initial update
+            updateSystemData();
+            updateHistoryData();
+            
+            // Set new interval
+            refreshIntervalId = setInterval(() => {
+                updateSystemData();
+                updateHistoryData();
+            }, refreshInterval * 1000);
         }
         
-        // Function to update process table
-        function updateProcessTable(processes) {
-            let html = '';
-            
-            processes.forEach(process => {
-                html += `
-                <tr>
-                    <td>${process.pid}</td>
-                    <td>${process.name}</td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar ${process.cpu_percent > 50 ? 'warning' : ''} ${process.cpu_percent > 80 ? 'danger' : ''}" 
-                                 style="width: ${Math.min(process.cpu_percent, 100)}%"></div>
-                        </div>
-                        ${process.cpu_percent.toFixed(1)}%
-                    </td>
-                    <td>
-                        <div class="progress">
-                            <div class="progress-bar ${process.memory_percent > 50 ? 'warning' : ''} ${process.memory_percent > 80 ? 'danger' : ''}" 
-                                 style="width: ${Math.min(process.memory_percent, 100)}%"></div>
-                        </div>
-                        ${process.memory_percent.toFixed(1)}%
-                    </td>
-                    <td>${process.status}</td>
-                </tr>
-                `;
+        // Event listeners for time range buttons
+        document.querySelectorAll('.time-range button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from siblings
+                this.parentNode.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update history data with new range
+                updateHistoryData();
             });
-            
-            $('#process-list').html(html);
-        }
+        });
         
-        // Set up refresh interval
-        let refreshInterval;
+        // Event listener for refresh interval select
+        document.getElementById('refresh-interval').addEventListener('change', function() {
+            refreshInterval = parseInt(this.value);
+            startAutoRefresh();
+        });
         
-        function startRefreshInterval() {
-            const interval = $('#refresh-interval').val();
-            clearInterval(refreshInterval);
-            refreshInterval = setInterval(fetchSystemData, interval * 1000);
-        }
+        // Event listener for refresh now button
+        document.getElementById('refresh-now').addEventListener('click', function() {
+            updateSystemData();
+            updateHistoryData();
+        });
         
-        // Initialize
-        $(document).ready(function() {
-            // Initial data fetch
-            fetchSystemData();
-            
-            // Set up refresh interval
-            startRefreshInterval();
-            
-            // Handle refresh interval change
-            $('#refresh-interval').change(function() {
-                startRefreshInterval();
-            });
-            
-            // Handle manual refresh
-            $('#refresh-now').click(function() {
-                fetchSystemData();
-            });
-            
-            // Handle time range buttons
-            $('.time-range button').click(function() {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-                // In a real application, this would adjust the time range of the charts
-            });
+        // Start auto refresh on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshInterval = parseInt(document.getElementById('refresh-interval').value);
+            startAutoRefresh();
         });
     </script>
 </body>
