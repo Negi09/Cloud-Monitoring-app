@@ -11,7 +11,6 @@ This project is a Flask web application containerized using Docker and deployed 
 - Flask backend auto-detects templates from the `templates/` folder
 - Dockerized with ECR push/pull support
 - Runs locally or on EC2 with Elastic IP for stable access
-- Simulated domain support via `/etc/hosts`
 - Optional Nginx reverse proxy to hide `:5000`
 
 ---
@@ -58,14 +57,14 @@ docker run -p 5000:5000 <your_docker_image> //  or you can use any port .!!
 2. Push to Amazon ECR
 3. SSH into EC2 instance
 4. Pull image & run container
-5. Optional: assign Elastic IP for static access
+5. assign Elastic IP for static access //optinal
 
 ---
 
 ## 🌐 Access Options
 
-- `http://<elastic-ip>:5000` or via custom `/etc/hosts` entry
--  Or Use Nginx to route requests from port 80
+- `http://<elastic-ip>:5000`
+- or Use Nginx to route requests from port 80
 
 ---
 
